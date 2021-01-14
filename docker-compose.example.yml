@@ -1,0 +1,14 @@
+version: "3.3"
+
+services:  
+  domeneshop-dynamicdns:
+    image: domeneshop-dynamicdns
+    container_name: domeneshop-dynamicdns
+    restart: always
+    environment:
+      TOKEN:
+      SECRET: 
+      TTL: 600
+      RECORD: yourrecord
+      DOMAIN: yourdomain.no
+      CHECK_MINUTES: 30
