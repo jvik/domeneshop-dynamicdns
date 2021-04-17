@@ -55,7 +55,7 @@ Adjust the environment variables to you needs inside the docker-compose file.
 TOKEN=your-domeneshop-token
 SECRET=your-domeneshop-secret
 TTL=600
-RECORD=www
+RECORDS=www,email
 DOMAIN=vg.no
 CHECK_MINUTES=30
 ```
