@@ -6,42 +6,58 @@ import checkDNS from "./checkdns";
 require("dotenv").config();
 
 const api = new Domeneshop(process.env.TOKEN, process.env.SECRET);
+const updateRecords = process.env.RECORDS.split(',');
 
 const checkAndUpdate = () => {
   api
     .getDomains()
     .then(async (domains) => {
-      const currentPublicIP = await publicIp.v4();
-      const DNSLookup = await checkDNS();
-      const misMatchBetweenMyIPAndRecord = currentPublicIP === DNSLookup;
-
-      if (misMatchBetweenMyIPAndRecord) {
-        console.log("Provided IP is equal to public DNS record. If this is incorrect wait until existing TTL is over.");
-        return;
-      }
-
       const myDomain = domains.find((domain) => domain.domain === process.env.DOMAIN);
       const myDomainRecords = await api.dns.getRecords(myDomain.id);
-      const domainRecordToCheckOrUpdate = myDomainRecords.find((record) => record.host === process.env.RECORD);
+      const currentPublicIP = await publicIp.v4();
+      const incorrectRecords = [];
+      const correctRecords = [];
 
-      const myNewRecord = {
-        data: currentPublicIP,
-        host: process.env.RECORD,
-        ttl: process.env.TTL,
-        type: "A",
+      for (const record of updateRecords) {
+        const DNSLookup = await checkDNS(record);
+        const misMatchBetweenMyIPAndRecord = currentPublicIP !== DNSLookup;
+
+        if (misMatchBetweenMyIPAndRecord) {
+          incorrectRecords.push(record);
+        } else {
+          correctRecords.push(record);
+        }
       };
 
-      if (!domainRecordToCheckOrUpdate) {
-        api.dns.createRecord(myDomain.id, myNewRecord);
-        console.log("The record was not found, and should have been created");
-      } else if (domainRecordToCheckOrUpdate.type === "A" && domainRecordToCheckOrUpdate.data !== currentPublicIP) {
-        console.log("The record already exists, but has been changed");
+      for (const incorrectRecord of incorrectRecords) {
+        const domainRecordToCheckOrUpdate = myDomainRecords.find((record) => record.host === incorrectRecord);
 
-        api.dns.modifyRecord(myDomain.id, domainRecordToCheckOrUpdate.id, myNewRecord);
-      } else if (domainRecordToCheckOrUpdate.type === "A" && domainRecordToCheckOrUpdate.data === currentPublicIP) {
-        console.log("Domain record already correct");
-      } else {
-        throw new Error("Something was not configured correctly");
+        const myNewRecord = {
+          data: currentPublicIP,
+          host: incorrectRecord,
+          ttl: process.env.TTL,
+          type: "A",
+        };
+
+        const fullRecord = `${incorrectRecord}.${process.env.DOMAIN}`
+
+        if (!domainRecordToCheckOrUpdate) {
+          api.dns.createRecord(myDomain.id, myNewRecord);
+          console.log(`${fullRecord} was not found, and should have been updated`, myNewRecord);
+        } else if (domainRecordToCheckOrUpdate.type === "A" && domainRecordToCheckOrUpdate.data !== currentPublicIP) {
+          console.log(`${fullRecord} already exists, but has been updated`);
+  
+          api.dns.modifyRecord(myDomain.id, domainRecordToCheckOrUpdate.id, myNewRecord);
+        } else if (domainRecordToCheckOrUpdate.type === "A" && domainRecordToCheckOrUpdate.data === currentPublicIP) {
+          console.log(`${fullRecord} was probably recently updated. Wait for TTL to expire`)
+        }
+        else {
+          throw new Error("Something was not configured correctly");
+        }
+      }
+
+      for (const correctRecord of correctRecords) {
+        console.log(`${correctRecord}.${process.env.DOMAIN} already correct`);
       }
     })
     .catch((err) => {

@@ -10,5 +10,7 @@ module.exports = {
   },
   rules: {
     "no-console": "off",
+    "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"],
+    "no-await-in-loop": "off"
   },
 };
