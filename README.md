@@ -3,7 +3,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Simple node app for dynamically updating the DNS every x minutes @ domeneshop.
+Simple node app for dynamically updating domeneshop DNS to whatever your internet address is.
 
 ### Built With
 
