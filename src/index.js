@@ -3,7 +3,7 @@ import publicIp from "public-ip";
 import cron from "node-cron";
 import checkDNS from "./checkdns";
 
-require("dotenv").config();
+require('dotenv-safe').config();
 
 const api = new Domeneshop(process.env.TOKEN, process.env.SECRET);
 const updateRecords = process.env.RECORDS.split(',');

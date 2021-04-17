@@ -24,6 +24,7 @@
     "cron": "^1.8.2",
     "domeneshop.js": "^0.1.8",
     "dotenv": "^8.2.0",
+    "dotenv-safe": "^8.2.0",
     "node-cron": "^2.0.3",
     "public-ip": "^4.0.3",
     "winston": "^3.3.3"
