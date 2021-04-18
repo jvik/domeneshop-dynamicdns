@@ -58,6 +58,7 @@ TTL=600
 RECORDS=www,email
 DOMAIN=vg.no
 CHECK_MINUTES=30
+TIMEZONE=Europe/Oslo
 ```
 
 <!-- LICENSE -->

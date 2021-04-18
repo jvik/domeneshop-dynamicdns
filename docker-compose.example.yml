@@ -9,6 +9,7 @@ services:
       TOKEN:
       SECRET: 
       TTL: 600
-      RECORD: yourrecord
+      RECORDS: yourrecord, yourrecord2
       DOMAIN: yourdomain.no
       CHECK_MINUTES: 30
+      TIMEZONE: Europe/Oslo
