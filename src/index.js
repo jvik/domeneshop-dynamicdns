@@ -2,6 +2,7 @@ import Domeneshop from "domeneshop.js";
 import publicIp from "public-ip";
 import cron from "node-cron";
 import checkDNS from "./checkdns";
+import logger from "./logger";
 
 require('dotenv-safe').config();
 
@@ -43,13 +44,13 @@ const checkAndUpdate = () => {
 
         if (!domainRecordToCheckOrUpdate) {
           api.dns.createRecord(myDomain.id, myNewRecord);
-          console.log(`${fullRecord} was not found, and should have been updated`, myNewRecord);
+          logger.warn(`${fullRecord} was not found, and should have been created`, myNewRecord);
         } else if (domainRecordToCheckOrUpdate.type === "A" && domainRecordToCheckOrUpdate.data !== currentPublicIP) {
-          console.log(`${fullRecord} already exists, but has been updated`);
+          logger.warn(`${fullRecord} already exists with incorrect IP, and has been updated`);
   
           api.dns.modifyRecord(myDomain.id, domainRecordToCheckOrUpdate.id, myNewRecord);
         } else if (domainRecordToCheckOrUpdate.type === "A" && domainRecordToCheckOrUpdate.data === currentPublicIP) {
-          console.log(`${fullRecord} was probably recently updated. Wait for TTL to expire`)
+          logger.warn(`${fullRecord} was probably recently updated. Wait for TTL to expire`)
         }
         else {
           throw new Error("Something was not configured correctly");
@@ -57,18 +58,18 @@ const checkAndUpdate = () => {
       }
 
       for (const correctRecord of correctRecords) {
-        console.log(`${correctRecord}.${process.env.DOMAIN} already correct`);
+        logger.info(`${correctRecord}.${process.env.DOMAIN} already correct`);
       }
     })
     .catch((err) => {
-      console.log(err);
+      logger.error(err);
       throw new Error(err);
     });
 };
 
 publicIp.v4().then((ourIp) => {
   // Do one run first and then run cronjob
-  console.log(`Started with IP ${ourIp}. Running once and then every ${process.env.CHECK_MINUTES} minutes`);
+  logger.info(`Started with IP ${ourIp}. Running once and then every ${process.env.CHECK_MINUTES} minutes`);
   checkAndUpdate();
 
   // Run every hour at X minutes.
