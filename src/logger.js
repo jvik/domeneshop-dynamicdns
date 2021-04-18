@@ -1,4 +1,11 @@
 import { createLogger, format, transports } from 'winston';
+import dayjs from 'dayjs';
+
+const utc = require('dayjs/plugin/utc')
+const timezone = require('dayjs/plugin/timezone')
+
+dayjs.extend(utc);
+dayjs.extend(timezone)
 
 const { combine, timestamp, json } = format;
 
@@ -6,7 +13,7 @@ const logger = createLogger({
   level: 'info',
   format: combine(
     timestamp({
-      format: 'YYYY-MM-DD HH:mm:ss'
+      format: dayjs().tz(process.env.TIMEZONE).format('YYYY-MM-DD HH:mm:ss') 
     }),
     json(),
   ),

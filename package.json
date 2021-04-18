@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node src/index.js",
+    "start": "nodemon -r dotenv-safe/config --exec babel-node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "babel": "./node_modules/.bin/babel src -d dist",
     "docker:build": "docker build -t domeneshop-dynamicdns ."
@@ -22,6 +22,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
     "cron": "^1.8.2",
+    "dayjs": "^1.10.4",
     "domeneshop.js": "^0.1.8",
     "dotenv": "^8.2.0",
     "dotenv-safe": "^8.2.0",
