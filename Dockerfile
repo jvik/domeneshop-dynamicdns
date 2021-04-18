@@ -12,4 +12,4 @@ RUN npm install
 COPY . /app
 RUN npm run babel
 
-CMD [ "node", "./dist/index.js" ]
+CMD [ "node", "-r", "dotenv-safe/config", "./dist/index.js" ]
