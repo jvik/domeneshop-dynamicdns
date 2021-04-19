@@ -42,10 +42,6 @@ This is an example of how to list things you need to use the software and how to
 I recommend running the process with docker-compose to keep it alive in the background. You can also use pm2 or similar process managers.
 
 ```shell
-$ docker build -t domeneshop-dynamicdns
-```
-
-```shell
 $ docker-compose up
 ```
 
