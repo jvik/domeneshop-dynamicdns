@@ -1,5 +1,7 @@
 # domeneshop-dynamicdns
 
+[![Docker Image CI](https://github.com/jvik/domeneshop-dynamicdns/actions/workflows/docker-image.yml/badge.svg)](https://github.com/jvik/domeneshop-dynamicdns/actions/workflows/docker-image.yml)
+
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
