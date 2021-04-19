@@ -2,7 +2,7 @@ version: "3.3"
 
 services:  
   domeneshop-dynamicdns:
-    image: domeneshop-dynamicdns
+    image: jvik/domeneshop-dynamicdns
     container_name: domeneshop-dynamicdns
     restart: always
     environment:
