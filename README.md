@@ -3,7 +3,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Simple node app for dynamically updating domeneshop DNS to whatever your internet address is.
+Simple node app for dynamically updating domeneshop DNS to whatever your external IPv4 address is.
 
 ### Built With
 
