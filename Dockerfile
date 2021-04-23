@@ -1,4 +1,4 @@
-FROM node:14.15.4
+FROM node:14.15.4 AS build
 
 # Create app directory
 RUN mkdir -p /app
@@ -12,4 +12,9 @@ RUN npm install
 COPY . /app
 RUN npm run babel
 
-CMD [ "node", "-r", "dotenv-safe/config", "./dist/index.js" ]
+# Use smaller alpine image for the runtime
+FROM node:14.15.4-alpine
+
+COPY --from=build /app /
+
+CMD [ "node", "run", "production" ]

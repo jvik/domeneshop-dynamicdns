@@ -7,7 +7,8 @@
     "start": "nodemon -r dotenv-safe/config --exec babel-node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "babel": "./node_modules/.bin/babel src -d dist",
-    "docker:build": "docker build -t domeneshop-dynamicdns ."
+    "docker:build": "docker build -t domeneshop-dynamicdns .",
+    "production": "node -r dotenv-safe/config ./dist/index.js"
   },
   "repository": {
     "type": "git",
