@@ -1,6 +1,0 @@
-{
-	"hooks": {
-		"commit-msg": "echo 'running commitlint' && commitlint --verbose -E HUSKY_GIT_PARAMS",
-		"pre-commit": "pretty-quick --staged"
-	}
-}
