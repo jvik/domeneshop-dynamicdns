@@ -8,7 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "babel": "./node_modules/.bin/babel src -d dist",
     "docker:build": "docker build -t domeneshop-dynamicdns .",
-    "production": "node -r dotenv-safe/config ./dist/index.js"
+    "production": "node -r dotenv-safe/config ./dist/index.js",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -41,7 +42,10 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^7.1.0",
     "eslint-plugin-import": "^2.22.1",
+    "husky": "^6.0.0",
     "nodemon": "^2.0.7",
-    "prettier": "2.2.1"
+    "prettier": "^2.2.1",
+    "prettier-cli": "^0.1.0",
+    "pretty-quick": "^3.1.0"
   }
 }
