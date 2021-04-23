@@ -1,6 +1,7 @@
 # domeneshop-dynamicdns
 
 [![Docker Image CI](https://github.com/jvik/domeneshop-dynamicdns/actions/workflows/docker-image.yml/badge.svg)](https://github.com/jvik/domeneshop-dynamicdns/actions/workflows/docker-image.yml)
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
