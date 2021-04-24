@@ -7,3 +7,5 @@ docker-compose*
 .git
 .gitignore
 .vscode
+.husky
+dist
