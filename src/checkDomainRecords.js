@@ -26,14 +26,12 @@ const checkAndUpdate = async () => {
 
     for (const incorrectRecord of incorrectRecords) {
       const parsedDomain = psl.parse(incorrectRecord);
-      console.log('🚀 ~ file: checkDomainRecords.js ~ line 31 ~ .then ~ parsedDomain', parsedDomain);
       if (parsedDomain.subdomain === '@') {
         parsedDomain.subdomain = null;
       }
 
       const myDomain = domeneshopDomains.find((domeneshopDomain) => domeneshopDomain.domain === parsedDomain.domain);
       const myDomainRecords = await api.dns.getRecords(myDomain.id);
-      console.log('🚀 ~ file: checkDomainRecords.js ~ line 34 ~ .then ~ myDomainRecords', myDomainRecords);
       const domainRecordToCheckOrUpdate = myDomainRecords.find((record) => record.host === parsedDomain.subdomain);
 
       const myNewRecord = {

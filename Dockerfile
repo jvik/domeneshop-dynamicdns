@@ -15,6 +15,7 @@ RUN npm run build
 # Use smaller alpine image for the runtime
 FROM node:14.15.4-alpine
 
-COPY --from=build /app /
+WORKDIR /app
+COPY --from=build /app /app
 
-CMD [ "node", "run", "production" ]
+CMD [ "npm", "run", "production" ]
