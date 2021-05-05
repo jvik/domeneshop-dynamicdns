@@ -7,10 +7,10 @@
     "start": "nodemon -r dotenv-safe/config --exec babel-node src/index.js",
     "debug": "nodemon --inspect -r dotenv-safe/config --exec babel-node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "babel": "./node_modules/.bin/babel src -d dist",
     "docker:build": "docker build -t domeneshop-dynamicdns .",
     "production": "node -r dotenv-safe/config ./dist/index.js",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "build": "rm -rf ./dist && babel src --out-dir dist --source-maps inline"
   },
   "repository": {
     "type": "git",
@@ -42,6 +42,7 @@
     "@babel/preset-env": "^7.12.11",
     "@commitlint/cli": "^12.1.1",
     "@commitlint/config-conventional": "^12.1.1",
+    "babel-plugin-inline-dotenv": "^1.6.0",
     "commitlint": "^12.1.1",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.17.0",

@@ -10,7 +10,7 @@ RUN npm install
 
 # Bundle app source
 COPY . /app
-RUN npm run babel
+RUN npm run build
 
 # Use smaller alpine image for the runtime
 FROM node:14.15.4-alpine
