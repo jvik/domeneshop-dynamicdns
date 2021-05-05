@@ -1,15 +1,14 @@
-version: "3.3"
+version: '3.3'
 
-services:  
+services:
   domeneshop-dynamicdns:
     image: jvik/domeneshop-dynamicdns
     container_name: domeneshop-dynamicdns
     restart: always
     environment:
       TOKEN:
-      SECRET: 
+      SECRET:
       TTL: 600
-      RECORDS: yourrecord, yourrecord2
-      DOMAIN: yourdomain.no
+      DOMAINS: www.vg.no,www.vg.no,some.other.subdomain.vg.no,some.other.domain.no
       CHECK_MINUTES: 30
       TIMEZONE: Europe/Oslo

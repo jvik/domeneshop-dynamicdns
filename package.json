@@ -30,6 +30,7 @@
     "dotenv": "^8.2.0",
     "dotenv-safe": "^8.2.0",
     "node-cron": "^2.0.3",
+    "psl": "^1.8.0",
     "public-ip": "^4.0.3",
     "winston": "^3.3.3"
   },
