@@ -24,7 +24,7 @@
   "homepage": "https://github.com/jvik/domeneshop-dynamicdns#readme",
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
-    "@babel/preset-env": "^7.14.1",
+    "@babel/preset-env": "^8.0.2",
     "cron": "^1.8.2",
     "dayjs": "^1.10.4",
     "domeneshop.js": "^0.1.8",
@@ -36,10 +36,10 @@
     "winston": "^3.3.3"
   },
   "devDependencies": {
-    "@babel/cli": "^7.12.10",
-    "@babel/core": "^7.12.10",
-    "@babel/node": "^7.12.10",
-    "@babel/plugin-transform-runtime": "^7.12.10",
+    "@babel/cli": "^8.0.1",
+    "@babel/core": "^8.0.1",
+    "@babel/node": "^8.0.1",
+    "@babel/plugin-transform-runtime": "^8.0.1",
     "@commitlint/cli": "^12.1.1",
     "@commitlint/config-conventional": "^12.1.1",
     "commitlint": "^12.1.1",
